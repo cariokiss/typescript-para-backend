@@ -1,7 +1,7 @@
 import express from "express";
 import router from "./routes";
 import "reflect-metadata";
-import { AppDataSource } from "./config/dataSource" // importação do banco de dados
+import { AppDataSource } from "./config/dataSource" //importação do banco de dados
 
 const app = express();
 app.use(express.json());

@@ -1,23 +1,23 @@
 import { Request, Response } from "express";
 import type TipoPet from "../tipos/TipoPet";
 import EnumEspecie from "../enum/EnumEspecie";
-let listaDePets: Array<TipoPet> = []; // variável necessária pq não estamos usando um banco de dados
+let listaDePets: Array<TipoPet> = []; //variável necessária pq não estamos usando um banco de dados
 
 let id = 0;
 function geraId() {
     id = id + 1;
     return id;
 }
-export default class PetController { // exportando uma class 
+export default class PetController { //exportando uma class 
     criaPet(req: Request, res: Response) {
-        const { adotado, especie, dataDeNascimento, nome } = <TipoPet>req.body; // o novopet precisa receber as informações do TipoPet
-        if (!Object.values(EnumEspecie).includes(especie)) { // if = se  x  if(!) = senão
+        const { adotado, especie, dataDeNascimento, nome } = <TipoPet>req.body; // onovopet precisa receber as informações do TipoPet
+        if (!Object.values(EnumEspecie).includes(especie)) { //if = se  x  if(!) = senão
             return res.status(400).json({ error: "Especie inválida" });
         }
 
         const novoPet: TipoPet = { id: geraId(), adotado, especie, dataDeNascimento, nome };
-        listaDePets.push(novoPet); // utiliza o push para inserir o novoPet na listaDePets
-        return res.status(201).json(novoPet); // retorna o novoPet ao usuário com o status 201 (criado)
+        listaDePets.push(novoPet); //utiliza o push para inserir o novoPet na listaDePets
+        return res.status(201).json(novoPet); //retorna o novoPet ao usuário com o status 201 (criado)
     }
 
     listaPets(req: Request, res: Response) {

@@ -4,4 +4,4 @@ enum EnumEspecie {
     TARTARUGA = "tartaruga",
 }
 
-export default EnumEspecie; // Exportando para que possamos usar em outras partes do código
+export default EnumEspecie; //exportando para que possamos usar em outras partes do código
