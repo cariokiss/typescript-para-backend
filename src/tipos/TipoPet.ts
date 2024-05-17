@@ -1,7 +1,9 @@
+import EnumEspecie from "../enem/EnumEspecie";
+
 type TipoPet={ // define os campos a serem preenchidos para criar um pet
     id: number;
     nome: string;
-    especie: string;
+    especie: EnumEspecie;
     adotado: boolean;
     idade: number;
 }
