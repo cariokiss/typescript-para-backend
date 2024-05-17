@@ -28,7 +28,8 @@ export default class PetController { //exportando uma class
         return res.status(201).json(novoPet); //retorna o novoPet ao usuário com o status 201 (criado)
     }
 
-    listaPets(req: Request, res: Response) {
+    async listaPets(req: Request, res: Response) {
+        const listaDePets = await this.repository.listaPet();
         return res.status(200).json(listaDePets);
     }
 

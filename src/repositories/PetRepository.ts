@@ -13,8 +13,8 @@ export default class PetRepository implements InterfacePetRepository {
     criaPet(pet: PetEntity): void {
         this.repository.save(pet);
     }
-    listaPet(): PetEntity[] {
-        throw new Error("Method not implemented.");
+    async listaPet(): Promise<PetEntity[]> { //sempre que a requisição demorar um tempo para retornar precisa de um async/await
+        return await this.repository.find();
     }
     atualizaPet(id: number, pet: PetEntity): void {
         throw new Error("Method not implemented.");
