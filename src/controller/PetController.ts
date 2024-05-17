@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import type TipoPet from "../tipos/TipoPet";
 import EnumEspecie from "../enum/EnumEspecie";
+import PetRepository from "../repositories/PetRepository";
+import PetEntity from "../entity/PetEntity";
 let listaDePets: Array<TipoPet> = []; //variável necessária pq não estamos usando um banco de dados
 
 let id = 0;
@@ -9,14 +11,20 @@ function geraId() {
     return id;
 }
 export default class PetController { //exportando uma class 
+    constructor(private repository: PetRepository) { }
     criaPet(req: Request, res: Response) {
-        const { adotado, especie, dataDeNascimento, nome } = <TipoPet>req.body; // onovopet precisa receber as informações do TipoPet
+        const { adotado, especie, dataDeNascimento, nome } = <PetEntity>req.body; // onovopet precisa receber as informações do TipoPet
         if (!Object.values(EnumEspecie).includes(especie)) { //if = se  x  if(!) = senão
             return res.status(400).json({ error: "Especie inválida" });
         }
 
-        const novoPet: TipoPet = { id: geraId(), adotado, especie, dataDeNascimento, nome };
-        listaDePets.push(novoPet); //utiliza o push para inserir o novoPet na listaDePets
+        const novoPet = new PetEntity();
+        novoPet.id = geraId(),
+            novoPet.adotado = adotado,
+            novoPet.especie = especie,
+            novoPet.dataDeNascimento = dataDeNascimento,
+            novoPet.nome = nome
+        this.repository.criaPet(novoPet);
         return res.status(201).json(novoPet); //retorna o novoPet ao usuário com o status 201 (criado)
     }
 
