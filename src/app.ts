@@ -1,14 +1,18 @@
-import express from "express";
-import router from "./routes";
-import "reflect-metadata";
-import { AppDataSource } from "./config/dataSource" //importação do banco de dados
+import express from 'express';
+import router from './routes';
+import 'reflect-metadata';
+import { AppDataSource } from './config/dataSource'; //importação do banco de dados
 
 const app = express();
 app.use(express.json());
 router(app);
 
-AppDataSource.initialize().then(() => {
-   console.log("Banco de dados conectado");
-}).catch((erro) => { console.log(erro); })
+AppDataSource.initialize()
+  .then(() => {
+    console.log('Banco de dados conectado');
+  })
+  .catch((erro) => {
+    console.log(erro);
+  });
 
 export default app;
