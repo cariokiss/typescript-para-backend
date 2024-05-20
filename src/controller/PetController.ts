@@ -3,6 +3,7 @@ import type TipoPet from '../tipos/TipoPet';
 import EnumEspecie from '../enum/EnumEspecie';
 import PetRepository from '../repositories/PetRepository';
 import PetEntity from '../entities/PetEntity';
+import EnumPorte from '../enum/EnumPorte';
 let listaDePets: Array<TipoPet> = []; //variável necessária pq não estamos usando um banco de dados
 
 let id = 0;
@@ -14,13 +15,26 @@ export default class PetController {
   //exportando uma class
   constructor(private repository: PetRepository) {}
   async criaPet(req: Request, res: Response) {
-    const { adotado, especie, dataDeNascimento, nome } = <PetEntity>req.body; // onovopet precisa receber as informações do TipoPet
+    const { adotado, especie, dataDeNascimento, nome, porte } = <PetEntity>(
+      req.body
+    ); // onovopet precisa receber as informações do TipoPet
+
     if (!Object.values(EnumEspecie).includes(especie)) {
       //if = se  x  if(!) = senão
       return res.status(400).json({ error: 'Especie inválida' });
     }
 
-    const novoPet = new PetEntity(nome, especie, dataDeNascimento, adotado);
+    if (porte && !(porte in EnumPorte)) {
+      //if = se  x  if(!) = senão
+      return res.status(400).json({ error: 'Porte inválido' });
+    }
+    const novoPet = new PetEntity(
+      nome,
+      especie,
+      dataDeNascimento,
+      adotado,
+      porte,
+    );
     await this.repository.criaPet(novoPet);
     return res.status(201).json(novoPet); //retorna o novoPet ao usuário com o status 201 (criado)
   }
