@@ -6,8 +6,8 @@ type TipoRequestParamsAdotante = { id?: string };
 
 type TipoResponseBodyAdotante = {
   data?:
-    | Pick<AdotanteEntity, 'id' | 'nome' | 'celular'>
-    | Pick<AdotanteEntity, 'id' | 'nome' | 'celular'>[]; //Pick = seleciona os campos a serem retornados
+    | Pick<AdotanteEntity, 'id' | 'nome' | 'celular' | 'endereco'>
+    | Pick<AdotanteEntity, 'id' | 'nome' | 'celular' | 'endereco'>[]; //Pick = seleciona os campos a serem retornados
   error?: unknown;
 };
 
