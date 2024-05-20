@@ -2,10 +2,12 @@ import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import EnderecoEntity from './Endereco';
+import PetEntity from './PetEntity';
 
 @Entity()
 export default class AdotanteEntity {
