@@ -21,7 +21,6 @@ export default class AdotanteEntity {
   celular: string;
   @Column({ nullable: true })
   foto?: string;
-
   @OneToOne(() => EnderecoEntity, {
     nullable: true,
     cascade: true, //o que acontecer com o adotante também acontecerá com o endereço
@@ -29,6 +28,8 @@ export default class AdotanteEntity {
   })
   @JoinColumn() //usado no relacionamento oneToOne para indicar um campo estrangeiro
   endereco?: EnderecoEntity;
+  @OneToMany(() => PetEntity, (pet) => pet.adotante)
+  pets!: PetEntity[];
 
   constructor(
     // primeiro os parâmetros obrigatórios depois os opcionais
