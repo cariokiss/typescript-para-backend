@@ -8,7 +8,7 @@ import EnumPorte from '../../enum/EnumPorte';
 yup.setLocale(pt); //traduz textos de retorno
 
 const esquemaBodyPet: yup.ObjectSchema<
-  Omit<TipoRequestBodyPet, 'adotante'> //omite o adotante na requisição
+  Omit<TipoRequestBodyPet, 'adotante' | 'abrigo'> //omite o adotante e o abrigo na requisição
 > = yup.object({
   nome: yup.string().defined().required(),
   especie: yup.string().oneOf(Object.values(EnumEspecie)).defined().required(),
