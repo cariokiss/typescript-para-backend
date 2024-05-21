@@ -5,10 +5,10 @@ type TipoRequestBodyAdotante = Omit<AdotanteEntity, 'id' | 'pets'>; //Omit = omi
 type TipoRequestParamsAdotante = { id?: string };
 
 type TipoResponseBodyAdotante = {
-  data?:
+  dados?:
     | Pick<AdotanteEntity, 'id' | 'nome' | 'celular' | 'endereco'>
     | Pick<AdotanteEntity, 'id' | 'nome' | 'celular' | 'endereco'>[]; //Pick = seleciona os campos a serem retornados
-  error?: unknown;
+  erros?: unknown;
 };
 
 export {
