@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import EnderecoEntity from './Endereco';
 import PetEntity from './PetEntity';
-import { criaSenhaCriptografada } from '../util/senhaCriptografada';
+import { criaSenhaCriptografada } from '../utils/senhaCriptografada';
 
 @Entity() //com isso passamos a mapear tudo oq está aq para o banco de dados como uma tabela
 export default class AbrigoEntity {
