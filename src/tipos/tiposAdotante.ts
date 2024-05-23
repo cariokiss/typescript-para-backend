@@ -8,11 +8,6 @@ type TipoResponseBodyAdotante = {
   dados?:
     | Pick<AdotanteEntity, 'id' | 'nome' | 'celular' | 'endereco'>
     | Pick<AdotanteEntity, 'id' | 'nome' | 'celular' | 'endereco'>[]; //Pick = seleciona os campos a serem retornados
-  erros?: unknown;
 };
 
-export {
-  TipoRequestBodyAdotante,
-  TipoResponseBodyAdotante,
-  TipoRequestParamsAdotante,
-};
+export { TipoRequestBodyAdotante, TipoResponseBodyAdotante, TipoRequestParamsAdotante };

@@ -12,7 +12,6 @@ type TipoResponseBodyPet = {
   dados?:
     | Pick<PetEntity, 'id' | 'nome' | 'porte' | 'especie'>
     | Pick<PetEntity, 'id' | 'nome' | 'porte' | 'especie'>[]; //Pick = seleciona os campos a serem retornados
-  erros?: unknown;
 };
 
 export { TipoRequestBodyPet, TipoResponseBodyPet, TipoRequestParamsPet };

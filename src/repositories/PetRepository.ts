@@ -63,10 +63,7 @@ export default class PetRepository implements InterfacePetRepository {
     return { success: true };
   }
 
-  async adotaPet(
-    idPet: number,
-    idAdotante: number,
-  ): Promise<{ success: boolean; message?: string }> {
+  async adotaPet(idPet: number, idAdotante: number) {
     const pet = await this.petRepository.findOne({ where: { id: idPet } });
     if (!pet) {
       throw new NaoEncontrado('Pet não encontrado');
