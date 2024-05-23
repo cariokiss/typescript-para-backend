@@ -8,19 +8,19 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { criaSenhaCriptografada } from '../utils/senhaCriptografada';
 import EnderecoEntity from './Endereco';
 import PetEntity from './PetEntity';
-import { criaSenhaCriptografada } from '../utils/senhaCriptografada';
 
-@Entity() //com isso passamos a mapear tudo oq está aq para o banco de dados como uma tabela
+@Entity()
 export default class AbrigoEntity {
-  @PrimaryGeneratedColumn() //faz com que o ID seja uma chave primária e seja gerado automaticamente
+  @PrimaryGeneratedColumn()
   id!: number;
-  @Column() //faz com que sejam colunas simples no banco de dados
+  @Column()
   nome: string;
   @Column({ unique: true })
   email: string;
-  @Column()
+  @Column({ unique: true })
   celular: string;
   @Column()
   senha: string;
@@ -37,20 +37,20 @@ export default class AbrigoEntity {
 
   constructor(
     nome: string,
-    email: string,
     celular: string,
+    email: string,
     senha: string,
     endereco?: EnderecoEntity,
   ) {
     this.nome = nome;
-    this.email = email;
     this.celular = celular;
+    this.email = email;
     this.senha = senha;
     this.endereco = endereco;
   }
   @BeforeInsert()
   @BeforeUpdate()
-  private async criptografaSenha() {
+  private async criptografarSenha() {
     if (this.senha) {
       this.senha = criaSenhaCriptografada(this.senha);
     }
